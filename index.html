@@ -64,19 +64,15 @@
   : "https://realtalkonline-backend.onrender.com/api";
 
 
-       const Icon = ({ name, size = 20, className = "" }) => {
-    // Convertimos nombres como 'message-square' a 'MessageSquare'
-    const pascalName = name.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('');
-    
-    // Buscamos el icono en el objeto global de lucide
-    const LucideIcon = lucide[pascalName] || lucide[name] || lucide.HelpCircle;
-
-    // Si por algún motivo LucideIcon no es una función válida, devolvemos un div vacío para que no rompa la pantalla
-    if (typeof LucideIcon !== 'function' && typeof LucideIcon !== 'object') {
+    const Icon = ({ name, size = 20, className = "" }) => {
+    try {
+        if (!window.lucide) return <div style={{ width: size, height: size }} className={className} />;
+        const pascalName = name.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('');
+        const LucideIcon = lucide[pascalName] || lucide.HelpCircle;
+        return <LucideIcon size={size} className={className} />;
+    } catch (e) {
         return <div style={{ width: size, height: size }} className={className} />;
     }
-
-    return <LucideIcon size={size} className={className} />;
 };
 
         const CATEGORIES = ["Metafísica", "Epistemología", "Ética", "Antropología", "Estética", "Cultura"];
