@@ -71,7 +71,7 @@
         const CATEGORIES = ["Metafísica", "Epistemología", "Ética", "Antropología", "Estética", "Cultura"];
         
         const INITIAL_QUESTIONS = [
-            { id: 'q1', title: "¿Es la libertad una ilusión necesaria para la moralidad?", context: "Si el universokkkkk es determinista, ¿podemos ser responsables de nuestros actos?", category: "Metafísica", isWeekly: true, podcastId: '01', notebookId: 'N-24' },
+            { id: 'q1', title: "¿Es la libertad una ilusión necesaria para la moralidad?", context: "Si el universoppppp es determinista, ¿podemos ser responsables de nuestros actos?", category: "Metafísica", isWeekly: true, podcastId: '01', notebookId: 'N-24' },
             { id: 'q2', title: "¿Podemos conocer la 'cosa en sí'?", context: "Límites del conocimiento humano según el idealismo trascendental.", category: "Epistemología", isWeekly: false, podcastId: '05', notebookId: 'N-12' },
             { id: 'q3', title: "Identidad digital y el 'yo' virtual", context: "¿Somos nuestra huella digital o algo más esencial?", category: "Cultura", isWeekly: false, podcastId: '09', notebookId: 'N-03' }
         ];
@@ -85,6 +85,8 @@
             const [isMenuOpen, setIsMenuOpen] = useState(false);
             // ... otros estados existentes ...
             const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); 
+            const [isRegistering, setIsRegistering] = useState(false); // Switch Registro/Login
+            const [authError, setAuthError] = useState(null); // Para mostrar errores rojos
 
             const [responses, setResponses] = useState([]);
             const [inputVal, setInputVal] = useState('');
@@ -123,16 +125,31 @@
                 });
             }, [responses, sortBy]);
 
-            const handleLogin = (e) => {
-                e.preventDefault();
-                if (loginForm.username) {
-                    setCurrentUser({ 
-                        username: loginForm.username, 
-                        avatar: loginForm.username[0].toUpperCase(),
-                        joinDate: new Date().toLocaleDateString()
-                    });
-                }
-            };
+           const handleAuth = async (e) => {
+    e.preventDefault();
+    setAuthError(null);
+    setLoading(true);
+
+    const endpoint = isRegistering ? '/auth/register' : '/auth/login';
+    
+    try {
+      const res = await fetch(`${API_URL}${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(loginForm)
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || 'Ocurrió un error inesperado');
+
+      setCurrentUser(data); // ¡Éxito! Entramos a la app
+    } catch (err) {
+      setAuthError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
             const addResponse = async (e) => {
                 e.preventDefault();
@@ -194,17 +211,79 @@
                             </div>
                             <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">RealTalk</h1>
                             <p className="text-slate-500 mb-8 text-sm">Plataforma para Agentes del Cambio</p>
-                            <form onSubmit={handleLogin} className="space-y-4 text-left">
-                                <div className="space-y-1">
-                                    <label className="text-[10px] font-black text-slate-500 uppercase ml-2">Usuario</label>
-                                    <input type="text" placeholder="Tu nombre público" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white outline-none focus:border-violet-500 transition-all" onChange={e => setLoginForm({...loginForm, username: e.target.value})} required />
-                                </div>
-                                <div className="space-y-1">
-                                    <label className="text-[10px] font-black text-slate-500 uppercase ml-2">Contraseña</label>
-                                    <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white outline-none focus:border-violet-500 transition-all" required />
-                                </div>
-                                <button className="w-full btn-gradient text-white font-bold py-4 rounded-xl shadow-lg mt-6 tracking-wide">ENTRAR A REALTALK</button>
-                            </form>
+                           <form onSubmit={handleAuth} className="space-y-4 text-left relative z-10">
+  
+  {/* Mensaje de Error si falla */}
+  {authError && (
+    <div className="bg-red-500/20 border border-red-500/50 p-3 rounded-xl flex items-center gap-2 animate-pulse">
+      <Icon name="alert-circle" size={16} className="text-red-400"/>
+      <span className="text-red-200 text-xs font-bold">{authError}</span>
+    </div>
+  )}
+
+  {/* Campo Usuario */}
+  <div className="space-y-1 group">
+    <label className="text-[10px] font-black text-slate-500 uppercase ml-2 group-focus-within:text-violet-400 transition-colors">
+      Nombre de Agente
+    </label>
+    <div className="relative">
+      <input 
+        type="text" 
+        placeholder="Tu alias filosófico" 
+        className="w-full bg-black/20 border border-white/10 rounded-xl px-5 py-3.5 pl-12 text-white outline-none focus:border-violet-500 focus:bg-white/5 transition-all"
+        required 
+        onChange={e => setLoginForm({...loginForm, username: e.target.value})}
+      />
+      <div className="absolute left-4 top-3.5 text-slate-500"><Icon name="user" size={18}/></div>
+    </div>
+  </div>
+
+  {/* Campo Contraseña */}
+  <div className="space-y-1 group">
+    <label className="text-[10px] font-black text-slate-500 uppercase ml-2 group-focus-within:text-violet-400 transition-colors">
+      Llave Secreta
+    </label>
+    <div className="relative">
+      <input 
+        type="password" 
+        placeholder="••••••••" 
+        className="w-full bg-black/20 border border-white/10 rounded-xl px-5 py-3.5 pl-12 text-white outline-none focus:border-violet-500 focus:bg-white/5 transition-all"
+        required 
+        onChange={e => setLoginForm({...loginForm, password: e.target.value})}
+      />
+      <div className="absolute left-4 top-3.5 text-slate-500"><Icon name="lock" size={18}/></div>
+    </div>
+  </div>
+
+  {/* Botón Principal */}
+  <button 
+    disabled={loading}
+    className={`w-full font-bold py-4 rounded-xl shadow-lg mt-6 tracking-wide transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2
+    ${loading ? 'opacity-50 cursor-not-allowed' : ''}
+    ${isRegistering ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white' : 'btn-gradient text-white'}`}
+  >
+    {loading ? (
+      <> <Icon name="loader-2" size={20} className="animate-spin"/> PROCESANDO... </>
+    ) : (
+      isRegistering ? 'CREAR CUENTA NUEVA' : 'ENTRAR A REALTALK'
+    )}
+  </button>
+
+  {/* Toggle Switch (Cambiar entre Login/Registro) */}
+  <div className="pt-4 text-center">
+    <button 
+      type="button"
+      onClick={() => { setIsRegistering(!isRegistering); setAuthError(null); }}
+      className="text-xs text-slate-500 font-bold hover:text-white transition-colors"
+    >
+      {isRegistering ? (
+        <span>¿Ya tienes cuenta? <span className="text-violet-400 underline decoration-2 underline-offset-4">Inicia Sesión aquí</span></span>
+      ) : (
+        <span>¿Eres nuevo? <span className="text-emerald-400 underline decoration-2 underline-offset-4">Únete a la comunidad</span></span>
+      )}
+    </button>
+  </div>
+</form>
                         </div>
                     </div>
                 );
