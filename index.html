@@ -150,7 +150,11 @@
 
       if (!res.ok) throw new Error(data.error || 'Ocurrió un error inesperado');
 
-      setCurrentUser(data); // ¡Éxito! Entramos a la app
+setCurrentUser({
+  ...data,
+  avatar: data.avatar || data.username?.[0]?.toUpperCase() || "?"
+});
+
     } catch (err) {
       setAuthError(err.message);
     } finally {
