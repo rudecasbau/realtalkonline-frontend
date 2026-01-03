@@ -65,8 +65,14 @@
 
 
         const Icon = ({ name, size = 20, className = "" }) => {
-            return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
-        };
+    // Añadimos un try-catch interno para que si un icono falla, no rompa la app
+    try {
+        const LucideIcon = lucide[name.charAt(0).toUpperCase() + name.slice(1).replace(/-([a-z])/g, g => g[1].toUpperCase())] || lucide.HelpCircle;
+        return <LucideIcon size={size} className={className} />;
+    } catch (e) {
+        return <div style={{width: size, height: size}} className={className}></div>;
+    }
+};
 
         const CATEGORIES = ["Metafísica", "Epistemología", "Ética", "Antropología", "Estética", "Cultura"];
         
