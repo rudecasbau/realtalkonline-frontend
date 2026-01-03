@@ -519,14 +519,41 @@
                                     <span className="text-lg font-bold tracking-tighter text-white">REALTALK</span>
                                 </div>
                                 <p className="text-slate-500 text-sm italic">"Filosofía para jóvenes agentes del cambio."</p>
-                            </div>
-                            <div className="flex justify-center gap-6">
-                                <a href="#" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all"><Icon name="instagram"/></a>
-                                <a href="#" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all"><Icon name="mail"/></a>
-                                <a href="#" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all"><Icon name="video"/></a>
-                            </div>
+ </div>
+
+ <div className="flex justify-center gap-6">
+
+   {/* Correo - Versión corregida */}
+  <a href="mailto:realtalkESP@gmail.com" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    </svg>
+  </a>
+
+    {/* Instagram - Usamos el de la librería (funciona bien) */}
+    <a href="https://www.instagram.com/realtalk.es/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all">
+        <Icon name="instagram"/>
+    </a>
+
+    {/* TikTok - SVG Manual (Logo Real estilo línea) */}
+    <a href="https://www.tiktok.com/@realtalk.esp" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+        </svg>
+    </a>
+
+    {/* Spotify - SVG Manual (Logo Real estilo línea) */}
+    <a href="https://open.spotify.com/user/31ahu5vevnobtwyjd5i46pcumkb4?si=b92e69276fb94e9a" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14.5c2.5-1 5.5-1 8 0"/>
+            <path d="M8 11.5c2.5-1 6-1 8.5 0"/>
+            <path d="M9 8.5c2-1 5.5-1 8 0"/>
+        </svg>
+    </a>
+ </div>
                             <div className="text-slate-600 text-[10px] font-bold uppercase tracking-widest">
-                                &copy; 2025 RealTalk Project <br/> Estudiantes de 2º Bachillerato
+                                &copy; 2025 Plataforma RealTalk <br/> Becas Europa
                             </div>
                         </div>
                     </footer>
