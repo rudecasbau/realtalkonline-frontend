@@ -92,6 +92,8 @@
         function App() {
             const [currentUser, setCurrentUser] = useState(null);
             const [loginForm, setLoginForm] = useState({ username: '', password: '' });
+            const [isRegistering, setIsRegistering] = useState(false);
+            const [authError, setAuthError] = useState("");
             const [view, setView] = useState('reflexiones');
             const [activeQuestionId, setActiveQuestionId] = useState('q1');
             const [sortBy, setSortBy] = useState('deepens');
@@ -139,16 +141,32 @@
             }, [responses, sortBy]);
 
 
-            const handleLogin = (e) => {
-                e.preventDefault();
-                if (loginForm.username) {
-                    setCurrentUser({
-                        username: loginForm.username,
-                        avatar: loginForm.username[0].toUpperCase(),
-                        joinDate: new Date().toLocaleDateString()
-                    });
-                }
-            };
+            const handleAuth = async (e) => {
+  e.preventDefault();
+  setAuthError(""); // Limpiar errores previos
+
+  const endpoint = isRegistering ? "/register" : "/login";
+
+  try {
+    const res = await fetch(`${API_URL}${endpoint}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginForm),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Error en la autenticación");
+    }
+
+    // Si todo sale bien, guardamos el usuario y limpiamos formulario
+    setCurrentUser(data);
+    setLoginForm({ username: "", password: "" });
+  } catch (err) {
+    setAuthError(err.message);
+  }
+};
 
 
             const addResponse = async (e) => {
@@ -217,7 +235,7 @@
                             </div>
                             <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">RealTalk</h1>
                             <p className="text-slate-500 mb-8 text-sm">Plataforma para Agentes del Cambio</p>
-                            <form onSubmit={handleLogin} className="space-y-4 text-left">
+                            <form onSubmit={handleAuth} className="space-y-4 text-left">
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-black text-slate-500 uppercase ml-2">Usuario</label>
                                     <input type="text" placeholder="Tu nombre público" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white outline-none focus:border-violet-500 transition-all" onChange={e => setLoginForm({...loginForm, username: e.target.value})} required />
@@ -226,7 +244,27 @@
                                     <label className="text-[10px] font-black text-slate-500 uppercase ml-2">Contraseña</label>
                                     <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white outline-none focus:border-violet-500 transition-all" required />
                                 </div>
-                                <button className="w-full btn-gradient text-white font-bold py-4 rounded-xl shadow-lg mt-6 tracking-wide">ENTRAR A REALTALK</button>
+
+                                {authError && (
+  <div className="text-red-500 text-xs font-bold text-center mt-2 bg-red-500/10 p-2 rounded-lg border border-red-500/20">
+    {authError}
+  </div>
+)}
+                                <button className="w-full btn-gradient text-white font-bold py-4 rounded-xl shadow-lg mt-6 tracking-wide">
+  {isRegistering ? "REGISTRARSE" : "ENTRAR A REALTALK"}
+</button>
+
+<div className="text-center mt-4">
+  <button 
+    type="button"
+    onClick={() => { setIsRegistering(!isRegistering); setAuthError(""); }}
+    className="text-slate-500 text-xs font-bold hover:text-white transition-colors uppercase tracking-widest"
+  >
+    {isRegistering 
+      ? "¿Ya tienes cuenta? Inicia sesión" 
+      : "¿No tienes cuenta? Regístrate"}
+  </button>
+</div>
                             </form>
                         </div>
                     </div>
