@@ -242,8 +242,15 @@
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-black text-slate-500 uppercase ml-2">Contraseña</label>
-                                    <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white outline-none focus:border-violet-500 transition-all" required />
-                                </div>
+                                    <input 
+  type="password" 
+  placeholder="................" 
+  className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white outline-none focus:border-violet-500 transition-all" 
+  value={loginForm.password || ''}
+  onChange={e => setLoginForm({...loginForm, password: e.target.value})}
+  required 
+/>
+                                    </div>
 
                                 {authError && (
   <div className="text-red-500 text-xs font-bold text-center mt-2 bg-red-500/10 p-2 rounded-lg border border-red-500/20">
