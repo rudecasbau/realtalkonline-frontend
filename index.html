@@ -71,6 +71,12 @@
         const API_URL = window.location.hostname === "localhost"
   ? "http://localhost:3000/api"
   : "https://realtalkonline-backend.onrender.com/api";
+  
+// 🔔 Despertar servidor al cargar la página
+fetch(API_URL + "/ping")
+  .then(() => console.log("Servidor despertado"))
+  .catch(() => console.log("Servidor aún despertando..."));
+
 
 
 
