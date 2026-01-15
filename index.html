@@ -241,28 +241,39 @@ fetch(API_URL + "/ping")
 
 
 
-           const vote = async (id, type) => {
-  // 1. Actualización visual instantánea
+          const vote = async (id, type) => {
+  let action = 'add'; // Por defecto sumamos
+
+  // 1. Actualización visual instantánea y lógica de toggle
   setResponses(responses.map(r => {
   if ((r.id || r._id) === id) {
   const key = type === 'deepens' ? 'votedDeepen' : 'votedLike';
-  if (r[key]) return r; // Si ya votó, no hacer nada visualmente
-  return { ...r, [type]: (r[type] || 0) + 1, [key]: true };
+  const isVoted = r[key]; // ¿Ya voté antes?
+  
+  // Si ya voté, la acción será quitar (remove), si no, añadir (add)
+  action = isVoted ? 'remove' : 'add';
+  
+  return { 
+  ...r, 
+  [type]: Math.max(0, (r[type] || 0) + (isVoted ? -1 : 1)), // Resta o Suma
+  [key]: !isVoted // Invierte el estado (True a False o viceversa)
+  };
   }
   return r;
   }));
 
-  // 2. Enviar al backend
+  // 2. Enviar al backend la acción correcta
   try {
   await fetch(`${API_URL}/responses/${id}/vote`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ type })
+  body: JSON.stringify({ type, action }) // Enviamos si es add o remove
   });
   } catch (err) {
   console.error("Error guardando voto en servidor", err);
   }
  };
+
 
 
             if (!currentUser) {
