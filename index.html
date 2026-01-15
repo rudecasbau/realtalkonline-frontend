@@ -209,27 +209,60 @@ fetch(API_URL + "/ping")
             };
 
 
-            const addComment = (resId) => {
-                const text = commentInput[resId];
-                if (!text?.trim()) return;
-                setResponses(responses.map(r => (r._id === resId || r.id === resId) ? {
-                    ...r,
-                    comments: [...(r.comments || []), { id: Date.now(), user: currentUser.username, content: text }]
-                } : r));
-                setCommentInput({ ...commentInput, [resId]: '' });
-            };
+           const addComment = async (resId) => {
+  const text = commentInput[resId];
+  if (!text?.trim()) return;
+
+  const newComment = { 
+  id: Date.now(),
+  user: currentUser.username, 
+  content: text 
+  };
+
+  // 1. Actualización visual instantánea (Optimistic UI)
+  setResponses(responses.map(r => (r.id === resId || r._id === resId) ? {
+  ...r,
+  comments: [...(r.comments || []), newComment]
+  } : r));
+  
+  setCommentInput({ ...commentInput, [resId]: '' });
+
+  // 2. Enviar al backend
+  try {
+  await fetch(`${API_URL}/responses/${resId}/comment`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(newComment)
+  });
+  } catch (err) {
+  console.error("Error guardando comentario en servidor", err);
+  }
+ };
 
 
-            const vote = (id, type) => {
-                setResponses(responses.map(r => {
-                    if ((r._id || r.id) === id) {
-                        const key = type === 'deepens' ? 'votedDeepen' : 'votedLike';
-                        if (r[key]) return r;
-                        return { ...r, [type]: (r[type] || 0) + 1, [key]: true };
-                    }
-                    return r;
-                }));
-            };
+
+           const vote = async (id, type) => {
+  // 1. Actualización visual instantánea
+  setResponses(responses.map(r => {
+  if ((r.id || r._id) === id) {
+  const key = type === 'deepens' ? 'votedDeepen' : 'votedLike';
+  if (r[key]) return r; // Si ya votó, no hacer nada visualmente
+  return { ...r, [type]: (r[type] || 0) + 1, [key]: true };
+  }
+  return r;
+  }));
+
+  // 2. Enviar al backend
+  try {
+  await fetch(`${API_URL}/responses/${id}/vote`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ type })
+  });
+  } catch (err) {
+  console.error("Error guardando voto en servidor", err);
+  }
+ };
 
 
             if (!currentUser) {
