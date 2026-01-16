@@ -220,45 +220,39 @@ fetch(API_URL + "/ping")
 
 
 
-
-            const addResponse = async (e) => {
+const addResponse = async (e) => {
                 e.preventDefault();
                 if (!inputVal.trim()) return;
 
-
-
-
                 const newRes = {
-                    id: Date.now().toString(),
                     qId: activeQuestionId,
                     user: currentUser.username,
                     content: inputVal,
-                    likes: 0,
-                    deepens: 0,
-                    date: new Date().toISOString(),
-                    comments: []
+                    date: new Date().toISOString()
                 };
 
-
-
-
-                // Actualización instantánea en pantalla
-                setResponses(prev => [newRes, ...prev]);
-                setInputVal('');
-
-
-
-
                 try {
-                    await fetch(`${API_URL}/responses`, {
+                    const response = await fetch(`${API_URL}/responses`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(newRes)
                     });
+
+                    if (!response.ok) throw new Error("Error en el servidor");
+
+                    const savedData = await response.json();
+                    
+                    // Usamos los datos que nos devuelve MongoDB (que ya traen el _id correcto)
+                    setResponses(prev => [savedData, ...prev]);
+                    setInputVal('');
+
                 } catch (err) {
-                    console.warn("Respuesta guardada solo en memoria local (servidor desconectado)");
+                    console.error("Error:", err);
+                    alert("No se pudo conectar con el servidor de MongoDB");
                 }
             };
+
+
 
 
 
