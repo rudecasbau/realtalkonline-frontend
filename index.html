@@ -261,34 +261,61 @@ const addResponse = async (e) => {
   const text = commentInput[resId];
   if (!text?.trim()) return;
 
-
-  const newComment = {
-  id: Date.now(),
-  user: currentUser.username,
-  content: text
-  };
-
-
-  // 1. Actualización visual instantánea (Optimistic UI)
-  setResponses(responses.map(r => (r.id === resId || r._id === resId) ? {
-  ...r,
-  comments: [...(r.comments || []), newComment]
-  } : r));
- 
-  setCommentInput({ ...commentInput, [resId]: '' });
-
-
-  // 2. Enviar al backend
   try {
-  await fetch(`${API_URL}/responses/${resId}/comment`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(newComment)
-  });
+    const res = await fetch(`${API_URL}/responses/${resId}/comments`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user: currentUser.username,
+        content: text
+      })
+    });
+
+    if (!res.ok) throw new Error("Error guardando comentario");
+
+    const data = await res.json();
+
+    // Actualizamos con lo que devuelve MongoDB
+    setResponses(prev =>
+      prev.map(r =>
+        (r._id === resId)
+          ? { ...r, comments: data.comments }
+          : r
+      )
+    );
+
+    setCommentInput({ ...commentInput, [resId]: '' });
+
   } catch (err) {
-  console.error("Error guardando comentario en servidor", err);
+    console.error("Error:", err);
+    alert("No se pudo guardar comentario");
   }
- };
+};
+
+const deleteComment = async (resId, commentId) => {
+  try {
+    await fetch(
+      `${API_URL}/admin/responses/${resId}/comments/${commentId}`,
+      {
+        method: "DELETE",
+        headers: {
+          adminkey: "TU_ADMIN_KEY_AQUÍ"
+        }
+      }
+    );
+
+    setResponses(prev =>
+      prev.map(r =>
+        r._id === resId
+          ? { ...r, comments: r.comments.filter(c => c._id !== commentId) }
+          : r
+      )
+    );
+  } catch (err) {
+    console.error("Error borrando comentario:", err);
+  }
+};
+
 
 
 
