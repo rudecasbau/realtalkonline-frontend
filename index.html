@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RealTalk | Agentes del Cambio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -103,21 +107,32 @@ fetch(API_URL + "/ping")
 
 
 
-
-        const Icon = ({ name, size = 20, className = "" }) => {
-            return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
-        };
-
+// Componente Icon genérico que ya tenías
+const Icon = ({ name, size = 20, className = "" }) => {
+  return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
+};
 
 
 
         const CATEGORIES = ["Metafísica", "Epistemología", "Ética", "Antropología", "Estética", "Cultura"];
        
         const INITIAL_QUESTIONS = [
-            { id: 'q1', title: "¿Es la libertad una ilusión necesaria para la moralidad?", context: "Si el universo es determinista, ¿podemos ser responsables de nuestros actos?", category: "Metafísica", isWeekly: true, podcastId: '01', notebookId: 'N-24' },
-            { id: 'q2', title: "¿Podemos conocer la 'cosa en sí'?", context: "Límites del conocimiento humano según el idealismo trascendental.", category: "Epistemología", isWeekly: false, podcastId: '05', notebookId: 'N-12' },
-            { id: 'q3', title: "Identidad digital y el 'yo' virtual", context: "¿Somos nuestra huella digital o algo más esencial?", category: "Cultura", isWeekly: false, podcastId: '09', notebookId: 'N-03' }
-        ];
+            { id: 'q1', title: "¿Existe realmente la libertad o todo está determinado por la realidad en la que vivimos?", context: "Si el universo es determinista, ¿podemos ser responsables de nuestros actos?", category: "metafisica", isWeekly: true, podcastId: '01', notebookId: 'N-01' },
+            { id: 'q2', title: "¿Podemos conocer la 'cosa en sí'?", context: "Límites del conocimiento humano según el idealismo trascendental.", category: "epistemología", isWeekly: false, podcastId: '02', notebookId: 'N-02' },
+            { id: 'q3', title: "Identidad digital y el 'yo' virtual", context: "¿Somos nuestra huella digital o algo más esencial?", category: "cultura", isWeekly: false, podcastId: '03', notebookId: 'N-03' },
+            { id: 'q4', title: "¿El dinero da la felicidad?", context: "¿Realmente conseguimos ser felices con ello o es más bien una obsesión negativa?", category: "etica", isWeekly: false, podcastId: '04', notebookId: 'N-04' },
+            { id: 'q5', title: "¿Qué es tener éxito en la vida? ¿Quién decide qué es tener éxito y por qué lo aceptamos?", context: "¿Debemos seguir unos estándares para tener éxito y ser felices? ", category: "antropologia", isWeekly: false, podcastId: '05', notebookId: 'N-05' },
+            { id: 'q6', title: "¿Qué es la felicidad? ¿Estamos obsersionados con ella?", context: "La definición de felicidad es de los temas más complejos jamás tratados: ¿qué es? ¿Merece la pena? ", category: "etica", isWeekly: false, podcastId: '06', notebookId: 'N-06' },
+            { id: 'q7', title: "¿Aprendemos para ser libres o solo para encajar en el sistema?", context: "¿Para qué dedicamos años de nuestra vida en aprender concoimientos y oficios? ¿Qué papel juega en nuestra vida y en nuuestra sociedad? ", category: "epistemologia", isWeekly: false, podcastId: '07', notebookId: 'N-07' },
+            { id: 'q8', title: "¿El conocimiento nos hace más libres o más responsables?", context: "¿Este es el objetivo de años de estudio? ", category: "epistemologia", isWeekly: false, podcastId: '08', notebookId: 'N-08' },
+            { id: 'q9', title: "¿Quién eres realmente: lo que piensas, lo que haces o lo que otros creen de ti?", context: "¿En qué se basa tu personalidad? ", category: "antropologia", isWeekly: false, podcastId: '09', notebookId: 'N-09' },
+            { id: 'q10', title: "¿La vida tiene sentido por sí misma o lo construimos nosotros?", context: "Pregunta complicada: ¿existe el famoso sentido de la vida? ", category: "etica", isWeekly: false, podcastId: '10', notebookId: 'N-10' },
+            { id: 'q11', title: "¿Qué significa ser libre si simpre tenemos límites?", context: "¿Existe la libertad total? Entonces, ¿somos libres? ¿Debemos luchar por la libertad total?", category: "etica", isWeekly: false, podcastId: '11', notebookId: 'N-11' },
+            { id: 'q12', title: "¿Estamos condenados a que la historia se repita?", context: "Dicen que el hombre es el único animal que se tropieza dos veces con la misma piedra, ¿es así? ¿Qué sentido tiene estudiar la historia? ", category: "antropologia", isWeekly: false, podcastId: '12', notebookId: 'N-12' },
+            { id: 'q13', title: "¿Qué es tener éxito en la vida? ¿Quién decide qué es tener éxito y por qué lo aceptamos?", context: "¿Debemos seguir unos estándares para tener éxito y ser felices? ", category: "antropologia", isWeekly: false, podcastId: '13', notebookId: 'N-13' },
+            { id: 'q14', title: "¿Qué significa aprender de verdad? ¿Para qué sirve aprender en la escuela?", context: "¿Para qué le dedicamos tantos años de nuestra vida? ", category: "epistemologia", isWeekly: false, podcastId: '14', notebookId: 'N-14' },
+
+          ];  
 
 
 
@@ -136,7 +151,174 @@ fetch(API_URL + "/ping")
             const [inputVal, setInputVal] = useState('');
             const [commentInput, setCommentInput] = useState({});
             const [loading, setLoading] = useState(false);
+            // --- NUEVO ESTADO PARA EL MENÚ Y CATEGORÍAS ---
+  const [activeTab, setActiveTab] = useState('Semana'); // Pestaña principal
+  const [categoryView, setCategoryView] = useState('grid'); // 'grid' o 'questions'
+  const [activeCategory, setActiveCategory] = useState(null);
 
+  const CATEGORIES_DATA = [
+    { 
+      id: 'metafisica', 
+      name: 'Metafísica', 
+      subtitle: 'Realidad y Ser',
+      iconName: 'sparkles', // Usamos nombres de string para tu componente Icon
+      color: 'from-amber-500/20 to-orange-600/20',
+      border: 'hover:border-amber-500/50',
+      textColor: 'text-amber-400',
+      count: INITIAL_QUESTIONS.filter(q => q.category === 'metafisica').length
+    },
+    { 
+      id: 'etica', 
+      name: 'Ética', 
+      subtitle: 'Bien y Moral',
+      iconName: 'circle-dot', 
+      color: 'from-emerald-500/20 to-teal-600/20',
+      border: 'hover:border-emerald-500/50',
+      textColor: 'text-emerald-400',
+      count: INITIAL_QUESTIONS.filter(q => q.category === 'etica').length
+    },
+    { 
+      id: 'antropologia', 
+      name: 'Antropología', 
+      subtitle: 'Naturaleza Humana',
+      iconName: 'users', 
+      color: 'from-violet-500/20 to-purple-600/20',
+      border: 'hover:border-violet-500/50',
+      textColor: 'text-violet-400',
+      count: INITIAL_QUESTIONS.filter(q => q.category === 'antropologia').length
+    },
+    { 
+      id: 'cultura', 
+      name: 'Libros y Cultura', 
+      subtitle: 'Expresión Humana',
+      iconName: 'library', 
+      color: 'from-blue-500/20 to-indigo-600/20',
+      border: 'hover:border-blue-500/50',
+      textColor: 'text-blue-400',
+      count: INITIAL_QUESTIONS.filter(q => q.category === 'cultura').length
+    },
+  ];
+
+  const handleCategoryClick = (cat) => {
+    setActiveCategory(cat);
+    setCategoryView('questions');
+  };
+  // ---------------------------------------------
+// Función auxiliar para renderizar Input + Lista de Respuestas
+  const renderResponseSection = () => (
+    <>
+      {/* Input de nueva respuesta */}
+      <div className="glass p-6 rounded-3xl mb-12 border-white/10 focus-within:border-violet-500/30 transition-all">
+        <textarea 
+          value={inputVal}
+          onChange={e => setInputVal(e.target.value)} 
+          className="w-full bg-transparent border-none text-lg text-white placeholder-slate-600 focus:ring-0 resize-none py-2 outline-none" 
+          placeholder="Comparte tu pensamiento más profundo..." 
+          rows="3" 
+        />
+        <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/5">
+          <div className="flex items-center gap-2 text-slate-500">
+            <Icon name="sparkles" size={14}/>
+            <span className="text-[10px] font-bold uppercase tracking-widest">Sin falacias, con asombro</span>
+          </div>
+          <button onClick={addResponse} disabled={!inputVal.trim()} className="btn-gradient text-white font-bold px-10 py-3.5 rounded-xl shadow-lg disabled:opacity-50">PUBLICAR</button>
+        </div>
+      </div>
+
+      {/* Lista de Respuestas */}
+      <div className="space-y-6">
+         {/* ... (Aquí pega todo el bloque de .map(res => ...) que tenías antes para mostrar mensajes) ... */}
+         {/* Para no hacer este mensaje eterno, asumo que mantienes tu bloque de mapeo de 'filteredResponses' aquí. Si quieres que te lo escriba entero dímelo. */}
+         
+         {/* EJEMPLO ABREVIADO DEL MAPEO QUE YA TIENES: */}
+         <div className="flex justify-between items-center px-2">
+            <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Diálogo Comunitario ({filteredResponses.length})</h3>
+            <div className="flex gap-1 bg-white/5 p-1 rounded-xl border border-white/5">
+              <button onClick={() => setSortBy('deepens')} className={`px-4 py-1.5 text-[10px] font-black rounded-lg transition-all ${sortBy === 'deepens' ? 'bg-violet-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}>PROFUNDIZA</button>
+              <button onClick={() => setSortBy('recent')} className={`px-4 py-1.5 text-[10px] font-black rounded-lg transition-all ${sortBy === 'recent' ? 'bg-violet-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}>RECIENTE</button>
+            </div>
+         </div>
+         
+         {loading ? (
+             <div className="text-center py-20 text-slate-600 font-bold animate-pulse uppercase tracking-widest">Consultando base de datos...</div>
+         ) : filteredResponses.map(res => {
+          const id = res._id || res.id;
+          return(
+             // ... TU COMPONENTE DE TARJETA DE RESPUESTA ACTUAL ...
+             <div key={id} className="glass p-8 rounded-[2rem] border-white/5 hover:border-white/10 transition-all group">
+                <div className="flex justify-between items-start mb-6">
+                    <div className="flex gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center font-bold text-slate-500 shadow-inner group-hover:bg-slate-700 transition-colors uppercase">{res.user[0]}</div>
+                        <div>
+                            <p className="font-bold text-white">@{res.user}</p>
+                            <p className="text-[10px] text-slate-600 font-bold uppercase">{new Date(res.date).toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                </div>
+                <p className="text-slate-300 text-lg mb-8 leading-relaxed whitespace-pre-wrap">{res.content}</p>
+                {/* Botones de interacción (Votos, comentarios) que ya tienes... */}
+                <div className="flex flex-wrap gap-4 pt-6 border-t border-white/5">
+                    <button onClick={() => vote(id,'deepens')} className={`flex items-center gap-3 px-5 py-2.5 rounded-xl text-[11px] font-black border transition-all ${res.votedDeepen ? 'bg-violet-600 text-white border-violet-600' : 'bg-violet-600/10 text-violet-400 border-violet-500/20 hover:bg-violet-600 hover:text-white'}`}>
+                        <Icon name="arrow-up" size={16}/> PROFUNDIZA • {res.deepens || 0}
+                    </button>
+                     {/* DE ACUERDO */}
+  <button
+    onClick={() => vote(id, 'likes')}
+    className={`flex items-center gap-3 px-5 py-2.5 rounded-xl text-[11px] font-black border transition-all
+      ${res.votedLike
+        ? 'bg-emerald-600 text-white border-emerald-600'
+        : 'bg-emerald-600/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-600 hover:text-white'
+      }`}
+  >
+    👍 DE ACUERDO • {res.likes || 0}
+  </button>
+
+
+
+                    {/* ... Resto de botones ... */}
+                </div>
+              {/* Comentarios */}
+<div className="mt-6 space-y-3">
+
+
+  {(res.comments || []).map(c => (
+    <div key={c._id} className="bg-white/5 p-3 rounded-xl text-sm flex justify-between items-start">
+      <div>
+        <span className="font-bold text-violet-400">@{c.user}</span>
+        <p className="text-slate-300">{c.content}</p>
+      </div>
+
+
+      
+    </div>
+  ))}
+
+
+  {/* Añadir comentario */}
+  <div className="flex gap-2 mt-2">
+    <input
+      value={commentInput[id] || ""}
+      onChange={e => setCommentInput({...commentInput, [id]: e.target.value})}
+      placeholder="Comenta..."
+      className="flex-1 bg-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none"
+    />
+    <button
+      onClick={() => addComment(id)}
+      className="bg-violet-600 px-4 rounded-lg text-white text-sm font-bold"
+    >
+      Enviar
+    </button>
+  </div>
+</div>
+
+
+
+             </div>
+            );
+         })}
+      </div>
+    </>
+  );
 
 
 
@@ -328,7 +510,8 @@ const deleteComment = async (resId, commentId) => {
 
   // 1. Actualización visual instantánea y lógica de toggle
   setResponses(responses.map(r => {
-  if ((r.id || r._id) === id) {
+  if (r._id === id || r.id === id)
+ {
   const key = type === 'deepens' ? 'votedDeepen' : 'votedLike';
   const isVoted = r[key]; // ¿Ya voté antes?
  
@@ -366,9 +549,12 @@ const deleteComment = async (resId, commentId) => {
                 return (
                     <div className="min-h-screen flex items-center justify-center p-6 bg-[#050505]">
                         <div className="glass max-w-md w-full p-10 rounded-[2.5rem] text-center shadow-2xl border-white/10 animate-slide-up">
-                            <div className="w-16 h-16 bg-violet-600 rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-xl shadow-violet-500/20">
-                                <span className="text-3xl font-black text-white">R</span>
-                            </div>
+                            <img
+  src="assets/img/logo.png"
+  alt="RealTalk"
+  className="w-20 h-20 mx-auto mb-6 object-contain"
+/>
+
                             <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">RealTalk</h1>
                             <p className="text-slate-500 mb-8 text-sm">Plataforma para Agentes del Cambio</p>
                             <form onSubmit={handleAuth} className="space-y-4 text-left">
@@ -421,219 +607,185 @@ const deleteComment = async (resId, commentId) => {
 
             return (
                 <div className="min-h-screen pb-20">
-                    <nav className="fixed top-0 w-full z-50 glass border-b border-white/5">
-                        <div className="max-w-7xl mx-auto h-20 px-6 flex items-center justify-between">
-                            <div className="flex items-center gap-10">
-                                <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setView('reflexiones')}>
-                                    <div className="w-10 h-10 bg-violet-600 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform"><span className="font-black text-white">R</span></div>
-                                    <span className="text-xl font-bold tracking-tighter text-white">REALTALK</span>
-                                </div>
-                                    {/* Botón Menú Móvil */}
-<button
-  className="md:hidden p-2 text-slate-400 hover:text-white transition-colors"
-  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
->
-  <Icon name={isMobileMenuOpen ? "x" : "menu"} size={24} />
-</button>
-                                <div className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-2xl border border-white/5">
-                                    <div className="relative" onMouseEnter={() => setIsMenuOpen(true)} onMouseLeave={() => setIsMenuOpen(false)}>
-                                        <button className={`px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all ${view === 'reflexiones' ? 'bg-white/10 text-white shadow-inner' : 'text-slate-500 hover:text-white'}`}>
-                                            <Icon name="message-square" size={16}/> REFLEXIONES <Icon name="chevron-down" size={14}/>
-                                        </button>
-                                        {isMenuOpen && (
-                                            <div className="absolute top-full left-0 pt-2 w-72">
-                                                <div className="bg-[#0f111a] border border-slate-800 rounded-2xl shadow-2xl p-3">
-                                                    <p className="text-[9px] font-black text-amber-500 uppercase tracking-widest px-3 mb-2">🔥 Pregunta Semanal</p>
-                                                    {INITIAL_QUESTIONS.filter(q => q.isWeekly).map(q => (
-                                                        <button key={q.id} onClick={() => { setActiveQuestionId(q.id); setView('reflexiones'); setIsMenuOpen(false); }} className="w-full text-left px-3 py-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-xs font-bold text-amber-200 mb-4">{q.title}</button>
-                                                    ))}
-                                                    <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest px-3 mb-2">Secciones</p>
-                                                    {INITIAL_QUESTIONS.filter(q => !q.isWeekly).map(q => (
-                                                        <button key={q.id} onClick={() => { setActiveQuestionId(q.id); setView('reflexiones'); setIsMenuOpen(false); }} className="w-full text-left px-3 py-2 text-xs text-slate-400 hover:text-white hover:bg-white/5 rounded-lg mb-1">{q.title}</button>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <button onClick={() => setView('podcasts')} className={`px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all ${view === 'podcasts' ? 'bg-white/10 text-white' : 'text-slate-500 hover:text-white'}`}><Icon name="headphones" size={16}/> PODCASTS</button>
-                                    <button onClick={() => setView('notebooks')} className={`px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all ${view === 'notebooks' ? 'bg-white/10 text-white' : 'text-slate-500 hover:text-white'}`}><Icon name="image" size={16}/> CUADERNOS</button>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity" onClick={() => setView('profile')}>
-                                <div className="text-right hidden sm:block">
-                                    <p className="text-sm font-black text-white">{currentUser.username}</p>
-                                    <p className="text-[10px] text-violet-500 font-bold uppercase tracking-tighter">Agente del Cambio</p>
-                                </div>
-                                <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center text-white font-bold border-2 border-[#08080c] shadow-lg">{currentUser.avatar}</div>
-                            </div>
-                        </div>
-                        {/* Desplegable del Menú Móvil */}
-{isMobileMenuOpen && (
-  <div className="md:hidden absolute top-20 left-0 w-full glass border-b border-white/5 animate-slide-up max-h-[80vh] overflow-y-auto">
-    <div className="p-6 space-y-4">
-     
-      {/* Sección Navegación */}
-      <div className="space-y-2">
-        <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-2">Navegación</p>
-       
-        {/* Botón Reflexiones */}
-        <button
-          onClick={() => { setView('reflexiones'); setIsMobileMenuOpen(false); }}
-          className={`w-full text-left px-4 py-3 rounded-xl font-bold flex items-center gap-3 transition-all ${view === 'reflexiones' ? 'bg-white/10 text-white' : 'text-slate-400 hover:bg-white/5'}`}
-        >
-          <Icon name="message-square" size={16}/> REFLEXIONES
-        </button>
+                    <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
+        <div className="max-w-3xl mx-auto bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 rounded-2xl px-2 py-1.5 flex items-center justify-between shadow-2xl">
+          
+
+{/* Logo RealTalk */}
+<img
+  src="assets/img/logo.png"
+  alt="RealTalk"
+  className="w-8 h-8 mr-3 object-contain cursor-pointer"
+  onClick={() => {
+    setView('reflexiones');
+    setActiveTab('Semana');
+  }}
+/>
 
 
-        {/* Lista de Preguntas (Dentro de Reflexiones) */}
-        <div className="pl-4 space-y-1 mt-2 border-l border-white/5 ml-4">
-           {INITIAL_QUESTIONS.map(q => (
-             <button
-               key={q.id}
-               onClick={() => {
-                 setActiveQuestionId(q.id);
-                 setView('reflexiones');
-                 setIsMobileMenuOpen(false);
-               }}
-               className="w-full text-left px-4 py-2 text-xs text-slate-500 hover:text-white rounded-lg hover:bg-white/5 truncate"
-             >
-               {q.title}
-             </button>
-           ))}
+          {/* Secciones Principales */}
+          <div className="flex items-center gap-1 flex-1">
+            <button 
+              onClick={() => { setActiveTab('Semana'); setView('reflexiones'); }}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${activeTab === 'Semana' ? 'bg-white/10 text-white shadow-inner' : 'text-slate-400 hover:text-slate-200'}`}
+            >
+              <Icon name="calendar" size={16} /> 
+              <span className="hidden sm:inline">Pregunta Semanal</span>
+              <span className="sm:hidden">Semana</span>
+            </button>
+            <button 
+              onClick={() => { setActiveTab('Reflexiones'); setView('reflexiones'); }}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${activeTab === 'Reflexiones' ? 'bg-white/10 text-white shadow-inner' : 'text-slate-400 hover:text-slate-200'}`}
+            >
+              <Icon name="brain" size={16} /> Reflexiones
+            </button>
+          </div>
+
+          {/* Secciones Secundarias */}
+          <div className="flex items-center gap-1 border-l border-white/10 ml-2 pl-2">
+            <button 
+              onClick={() => { setActiveTab('Podcast'); setView('podcasts'); }}
+              className={`p-2 rounded-lg transition-all flex items-center gap-2 ${activeTab === 'Podcast' ? 'bg-violet-600/20 text-violet-400' : 'text-slate-500 hover:text-slate-300'}`}
+              title="Podcast"
+            >
+              <Icon name="mic-2" size={18} />
+            </button>
+            <button 
+              onClick={() => { setActiveTab('Cuadernos'); setView('notebooks'); }}
+              className={`p-2 rounded-lg transition-all flex items-center gap-2 ${activeTab === 'Cuadernos' ? 'bg-violet-600/20 text-violet-400' : 'text-slate-500 hover:text-slate-300'}`}
+              title="Cuadernos"
+            >
+              <Icon name="book-open" size={18} />
+            </button>
+            
+             {/* Perfil Mini */}
+             <div onClick={() => setView('profile')} className="ml-2 w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center text-white text-xs font-bold cursor-pointer hover:scale-105 transition-transform border border-white/10">
+                {currentUser ? currentUser.avatar : <Icon name="user" size={14}/>}
+             </div>
+          </div>
         </div>
-      </div>
-
-
-      <div className="h-px bg-white/5 my-2"></div>
-
-
-      {/* Botones Podcasts y Cuadernos */}
-      <button
-        onClick={() => { setView('podcasts'); setIsMobileMenuOpen(false); }}
-        className={`w-full text-left px-4 py-3 rounded-xl font-bold flex items-center gap-3 transition-all ${view === 'podcasts' ? 'bg-white/10 text-white' : 'text-slate-400 hover:bg-white/5'}`}
-      >
-        <Icon name="headphones" size={16}/> PODCASTS
-      </button>
-
-
-      <button
-        onClick={() => { setView('notebooks'); setIsMobileMenuOpen(false); }}
-        className={`w-full text-left px-4 py-3 rounded-xl font-bold flex items-center gap-3 transition-all ${view === 'notebooks' ? 'bg-white/10 text-white' : 'text-slate-400 hover:bg-white/5'}`}
-      >
-        <Icon name="image" size={16}/> CUADERNOS
-      </button>
-    </div>
-  </div>
-)}
-                    </nav>
-
+      </nav>
 
 
 
                     <main className="max-w-4xl mx-auto pt-32 px-6">
-                        {view === 'reflexiones' && (
-                            <div className="animate-slide-up">
-                                <div className="glass p-10 rounded-[2.5rem] mb-8 border-violet-500/10 shadow-2xl relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 p-6 opacity-10"><Icon name="quote" size={80}/></div>
-                                    <div className="flex gap-2 mb-6">
-                                        <span className="bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Foco de la semana</span>
-                                        <span className="bg-violet-500/10 text-violet-400 border border-violet-500/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">{currentQuestion.category}</span>
-                                    </div>
-                                    <h2 className="text-4xl font-black text-white mb-6 leading-tight">{currentQuestion.title}</h2>
-                                    <p className="text-xl text-slate-400 mb-8 max-w-2xl">{currentQuestion.context}</p>
-                                   
-                                    <div className="flex gap-4 border-t border-white/5 pt-8">
-                                        <button onClick={() => setView('podcasts')} className="flex items-center gap-3 px-5 py-2.5 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-all">
-                                            <Icon name="play" size={16} className="text-violet-500"/>
-                                            <span className="text-xs font-bold text-white uppercase tracking-tighter">Escuchar Podcast {currentQuestion.podcastId}</span>
-                                        </button>
-                                        <button onClick={() => setView('notebooks')} className="flex items-center gap-3 px-5 py-2.5 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-all">
-                                            <Icon name="book-open" size={16} className="text-emerald-500"/>
-                                            <span className="text-xs font-bold text-white uppercase tracking-tighter">Ver Cuaderno {currentQuestion.notebookId}</span>
-                                        </button>
-                                    </div>
-                                </div>
+                        <main className="max-w-4xl mx-auto pt-32 px-6 pb-20">
+        
+        {/* Lógica para mostrar CONTENIDO PRINCIPAL (Semana o Reflexiones) */}
+        {view === 'reflexiones' && (
+          <div className="animate-slide-up">
+            
+            {/* CASO 1: PREGUNTA DE LA SEMANA (Tu diseño original simplificado) */}
+            {activeTab === 'Semana' && (
+              <div>
+                 {/* Aquí forzamos a mostrar la pregunta semanal */}
+                 {(() => {
+                    const weeklyQ = INITIAL_QUESTIONS.find(q => q.isWeekly);
+                    // Si la activa no es la semanal, la cambiamos (efecto secundario controlado)
+                    if (activeQuestionId !== weeklyQ.id && activeTab === 'Semana') setActiveQuestionId(weeklyQ.id);
+                    
+                    return (
+                      <>
+                        <div className="glass p-8 rounded-[2.5rem] mb-8 border-amber-500/10 shadow-2xl relative overflow-hidden">
+                           <div className="absolute top-0 right-0 p-6 opacity-10 text-amber-500"><Icon name="flame" size={80}/></div>
+                           <span className="bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 inline-block">Foco de la semana</span>
+                           <h2 className="text-3xl font-black text-white mb-4 leading-tight">{weeklyQ.title}</h2>
+                           <p className="text-lg text-slate-400">{weeklyQ.context}</p>
+                        </div>
+                        {/* Renderizamos la caja de input y las respuestas (Tu código existente reutilizado) */}
+                        {renderResponseSection()} 
+                      </>
+                    )
+                 })()}
+              </div>
+            )}
 
+            {/* CASO 2: REFLEXIONES (El nuevo Grid) */}
+            {activeTab === 'Reflexiones' && (
+              <div>
+                {categoryView === 'grid' ? (
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <header className="mb-10 text-center">
+                      <h1 className="text-4xl font-black tracking-tight bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent mb-3">
+                        ¿Sobre qué quieres reflexionar?
+                      </h1>
+                      <p className="text-slate-500 text-lg font-medium">
+                        Selecciona una sección sobre la que pensar
+                      </p>
+                    </header>
 
-
-
-                                <div className="glass p-6 rounded-3xl mb-12 border-white/10 focus-within:border-violet-500/30 transition-all">
-                                    <textarea value={inputVal} onChange={e => setInputVal(e.target.value)} className="w-full bg-transparent border-none text-lg text-white placeholder-slate-600 focus:ring-0 resize-none py-2 outline-none" placeholder="Comparte tu pensamiento más profundo..." rows="3" />
-                                    <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/5">
-                                        <div className="flex items-center gap-2 text-slate-500">
-                                            <Icon name="sparkles" size={14}/>
-                                            <span className="text-[10px] font-bold uppercase tracking-widest">Sin falacias, con asombro</span>
-                                        </div>
-                                        <button onClick={addResponse} disabled={!inputVal.trim()} className="btn-gradient text-white font-bold px-10 py-3.5 rounded-xl shadow-lg disabled:opacity-50">PUBLICAR</button>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div className="space-y-6">
-                                    <div className="flex justify-between items-center px-2">
-                                        <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Diálogo Comunitario ({filteredResponses.length})</h3>
-                                        <div className="flex gap-1 bg-white/5 p-1 rounded-xl border border-white/5">
-                                            <button onClick={() => setSortBy('deepens')} className={`px-4 py-1.5 text-[10px] font-black rounded-lg transition-all ${sortBy === 'deepens' ? 'bg-violet-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}>PROFUNDIZA</button>
-                                            <button onClick={() => setSortBy('recent')} className={`px-4 py-1.5 text-[10px] font-black rounded-lg transition-all ${sortBy === 'recent' ? 'bg-violet-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}>RECIENTE</button>
-                                        </div>
-                                    </div>
-
-
-
-
-                                    {loading ? (
-                                        <div className="text-center py-20 text-slate-600 font-bold animate-pulse uppercase tracking-widest">Consultando base de datos...</div>
-                                    ) : filteredResponses.map(res => (
-                                        <div key={res._id || res.id} className="glass p-8 rounded-[2rem] border-white/5 hover:border-white/10 transition-all group">
-                                            <div className="flex justify-between items-start mb-6">
-                                                <div className="flex gap-4">
-                                                    <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center font-bold text-slate-500 shadow-inner group-hover:bg-slate-700 transition-colors uppercase">{res.user[0]}</div>
-                                                    <div>
-                                                        <p className="font-bold text-white">@{res.user}</p>
-                                                        <p className="text-[10px] text-slate-600 font-bold uppercase">{new Date(res.date).toLocaleDateString()}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p className="text-slate-300 text-lg mb-8 leading-relaxed whitespace-pre-wrap">{res.content}</p>
-                                           
-                                            <div className="flex flex-wrap gap-4 pt-6 border-t border-white/5">
-                                                <button onClick={() => vote(res._id || res.id, 'deepens')} className={`flex items-center gap-3 px-5 py-2.5 rounded-xl text-[11px] font-black border transition-all ${res.votedDeepen ? 'bg-violet-600 text-white border-violet-600' : 'bg-violet-600/10 text-violet-400 border-violet-500/20 hover:bg-violet-600 hover:text-white'}`}>
-                                                    <Icon name="arrow-up" size={16}/> PROFUNDIZA • {res.deepens || 0}
-                                                </button>
-                                                <button onClick={() => vote(res._id || res.id, 'likes')} className={`flex items-center gap-3 px-5 py-2.5 rounded-xl text-[11px] font-black border transition-all ${res.votedLike ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-emerald-600/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-600 hover:text-white'}`}>
-                                                    <Icon name="heart" size={16}/> DE ACUERDO • {res.likes || 0}
-                                                </button>
-                                                <button className="flex items-center gap-3 px-5 py-2.5 rounded-xl text-[11px] font-black border border-white/5 text-slate-500 hover:text-white hover:bg-white/5 transition-all">
-                                                    <Icon name="message-circle" size={16}/> COMENTAR
-                                                </button>
-                                            </div>
-
-
-
-
-                                            {/* Comentarios */}
-                                            <div className="mt-6 space-y-4">
-                                                {(res.comments || []).map(c => (
-                                                    <div key={c.id} className="flex gap-3 items-start pl-6 border-l-2 border-white/5">
-                                                        <div className="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center text-[10px] font-black text-slate-500 uppercase">{c.user[0]}</div>
-                                                        <div className="bg-white/5 p-3 rounded-2xl rounded-tl-none">
-                                                            <p className="text-[10px] font-black text-violet-400 mb-1">@{c.user}</p>
-                                                            <p className="text-xs text-slate-400 leading-snug">{c.content}</p>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                                <div className="flex gap-3 pl-6 mt-4">
-                                                    <input type="text" placeholder="Añade tu punto de vista..." className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white outline-none focus:border-violet-500" value={commentInput[res._id || res.id] || ''} onChange={(e) => setCommentInput({...commentInput, [res._id || res.id]: e.target.value})} />
-                                                    <button onClick={() => addComment(res._id || res.id)} className="bg-slate-800 p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-violet-600 transition-all"><Icon name="send" size={14}/></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {CATEGORIES_DATA.map((cat) => (
+                        <button
+                          key={cat.id}
+                          onClick={() => handleCategoryClick(cat)}
+                          className={`relative group text-left p-6 rounded-[2rem] border border-white/5 bg-gradient-to-br ${cat.color} backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black active:scale-95 ${cat.border}`}
+                        >
+                          <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]" />
+                          <div className="relative z-10">
+                            <div className="mb-4 inline-flex p-3 rounded-2xl bg-black/40 border border-white/10 group-hover:border-white/20 transition-colors">
+                              <Icon name={cat.iconName} className={cat.textColor} size={24} />
                             </div>
-                        )}
+                            <h3 className="text-xl font-bold text-white mb-1 group-hover:translate-x-1 transition-transform">
+                              {cat.name}
+                            </h3>
+                            <p className="text-slate-400 text-sm mb-4 font-medium">
+                              {cat.subtitle}
+                            </p>
+                            <div className="flex items-center justify-between">
+                              <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold bg-black/30 px-2 py-1 rounded-md">
+                                {cat.count} preguntas
+                              </span>
+                              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                                <Icon name="chevron-right" size={16} className="text-slate-400 group-hover:text-white transition-colors" />
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  // VISTA DE PREGUNTAS DENTRO DE UNA CATEGORÍA
+                  <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                    <button 
+                      onClick={() => setCategoryView('grid')}
+                      className="flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition-colors group font-bold text-sm"
+                    >
+                      <Icon name="arrow-left" size={16} className="group-hover:-translate-x-1 transition-transform" /> 
+                      <span>VOLVER A SECCIONES</span>
+                    </button>
+
+                    <div className="mb-8">
+                       <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/5 ${activeCategory.textColor} mb-2 inline-block`}>{activeCategory.name}</span>
+                       <h2 className="text-3xl font-black text-white">Explora preguntas</h2>
+                    </div>
+
+                    <div className="space-y-4">
+                      {INITIAL_QUESTIONS.filter(q => q.category === activeCategory.id).map((q) => (
+                        <div 
+                          key={q.id} 
+                          onClick={() => { setActiveQuestionId(q.id); /*Aquí deberíamos abrir la vista de detalle, por simplicidad la usaremos debajo*/ }}
+                          className={`p-6 rounded-[2rem] bg-white/5 border hover:bg-white/10 transition-all cursor-pointer group ${activeQuestionId === q.id ? 'border-violet-500 bg-violet-500/10' : 'border-white/5'}`}
+                        >
+                          <h3 className="text-lg font-bold text-white mb-2">{q.title}</h3>
+                          <p className="text-sm text-slate-400 mb-4">{q.context}</p>
+                          
+                          {/* Si esta es la pregunta activa, mostramos la sección de respuestas aquí mismo (estilo acordeón) o redirigimos */}
+                          {activeQuestionId === q.id && (
+                             <div className="mt-6 pt-6 border-t border-white/5 animate-slide-up">
+                                {renderResponseSection()}
+                             </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
 
 
@@ -714,7 +866,7 @@ const deleteComment = async (resId, commentId) => {
                                 </div>
                             </div>
                         )}
-                    </main>
+                    </main></main>
 
 
 
@@ -724,7 +876,12 @@ const deleteComment = async (resId, commentId) => {
                         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 items-center text-center md:text-left">
                             <div>
                                 <div className="flex items-center gap-3 justify-center md:justify-start mb-4">
-                                    <div className="w-8 h-8 bg-violet-600 rounded-lg flex items-center justify-center"><span className="font-black text-white text-xs">R</span></div>
+                                    <img
+  src="assets/img/logo.svg"
+  alt="RealTalk"
+  className="w-8 h-8 object-contain"
+/>
+
                                     <span className="text-lg font-bold tracking-tighter text-white">REALTALK</span>
                                 </div>
                                 <p className="text-slate-500 text-sm italic">"Filosofía para jóvenes agentes del cambio."</p>
