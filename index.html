@@ -129,10 +129,20 @@ const Icon = ({ name, size = 20, className = "" }) => {
             { id: 'q10', title: "¿La vida tiene sentido por sí misma o lo construimos nosotros?", context: "Pregunta complicada: ¿existe el famoso sentido de la vida? ", category: "etica", isWeekly: false, podcastId: '10', notebookId: 'N-10' },
             { id: 'q11', title: "¿Qué significa ser libre si simpre tenemos límites?", context: "¿Existe la libertad total? Entonces, ¿somos libres? ¿Debemos luchar por la libertad total?", category: "etica", isWeekly: false, podcastId: '11', notebookId: 'N-11' },
             { id: 'q12', title: "¿Estamos condenados a que la historia se repita?", context: "Dicen que el hombre es el único animal que se tropieza dos veces con la misma piedra, ¿es así? ¿Qué sentido tiene estudiar la historia? ", category: "antropologia", isWeekly: false, podcastId: '12', notebookId: 'N-12' },
-            { id: 'q13', title: "¿Qué es tener éxito en la vida? ¿Quién decide qué es tener éxito y por qué lo aceptamos?", context: "¿Debemos seguir unos estándares para tener éxito y ser felices? ", category: "antropologia", isWeekly: false, podcastId: '13', notebookId: 'N-13' },
+            { id: 'q13', title: "¿El tiempo es una realidad o es una concepción humana?", context: "¿El tiempo fluye solo en nosotros? ¿Siempre va hacia adelante y con la misma velocidad? ", category: "metafisica", isWeekly: false, podcastId: '13', notebookId: 'N-13' },
             { id: 'q14', title: "¿Qué significa aprender de verdad? ¿Para qué sirve aprender en la escuela?", context: "¿Para qué le dedicamos tantos años de nuestra vida? ", category: "epistemologia", isWeekly: false, podcastId: '14', notebookId: 'N-14' },
+            { id: 'q14', title: "¿Cómo de importante es escribir a mano?", context: "Lee este artículo y reflexiona (Alfa y Omega, Carlos Javier González Serrano) ", link:"https://alfayomega.es/necesitamos-escribir-a-mano/", category: "cultura", isWeekly: false, podcastId: '15', notebookId: 'N-15' },
+
+
 
           ];  
+
+
+          const NOTEBOOKS = [
+  {id: "q1",title: "¿Qué es tener éxito en la vida? ¿Quién decide qué es tener éxito y por qué lo aceptamos?",questionId: "q5",cover: "assets/notebooks/q1/nb1.png",images: ["assets/notebooks/q1/nb1.png","assets/notebooks/q1/nb2.png","assets/notebooks/q1/nb3.png"]},
+ 
+];
+
 
 
 
@@ -148,6 +158,7 @@ const Icon = ({ name, size = 20, className = "" }) => {
             const [isMenuOpen, setIsMenuOpen] = useState(false);
             const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
             const [responses, setResponses] = useState([]);
+            const [selectedNotebook, setSelectedNotebook] = useState(null);
             const [inputVal, setInputVal] = useState('');
             const [commentInput, setCommentInput] = useState({});
             const [loading, setLoading] = useState(false);
@@ -769,7 +780,27 @@ const deleteComment = async (resId, commentId) => {
                           className={`p-6 rounded-[2rem] bg-white/5 border hover:bg-white/10 transition-all cursor-pointer group ${activeQuestionId === q.id ? 'border-violet-500 bg-violet-500/10' : 'border-white/5'}`}
                         >
                           <h3 className="text-lg font-bold text-white mb-2">{q.title}</h3>
-                          <p className="text-sm text-slate-400 mb-4">{q.context}</p>
+                          
+<p className="text-slate-400 text-sm leading-relaxed">
+  {q.context}
+  {q.link && (
+    <a
+      href={q.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="ml-2 inline-flex items-center text-violet-400 hover:text-violet-300 underline underline-offset-4 transition-colors font-medium"
+      onClick={(e) => e.stopPropagation()}
+    >
+      Ver más
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+    </a>
+  )}
+</p>
+
                           
                           {/* Si esta es la pregunta activa, mostramos la sección de respuestas aquí mismo (estilo acordeón) o redirigimos */}
                           {activeQuestionId === q.id && (
@@ -814,19 +845,71 @@ const deleteComment = async (resId, commentId) => {
 
 
                         {view === 'notebooks' && (
-                            <div className="animate-slide-up space-y-8 text-center py-20">
-                                <Icon name="book" size={64} className="mx-auto text-emerald-500 opacity-20 mb-6"/>
-                                <h2 className="text-4xl font-black text-white uppercase tracking-tighter">Cuadernos de Primaria</h2>
-                                <p className="text-slate-500 max-w-lg mx-auto italic">"El asombro de los más pequeños visto a través de su puño y letra."</p>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-10">
-                                    {[1, 2, 3].map(i => (
-                                        <div key={i} className="aspect-square glass rounded-3xl flex items-center justify-center p-4">
-                                            <div className="text-slate-700 text-[10px] font-black uppercase">[Imagen de Cuaderno 0{i}]</div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
+  <div className="animate-slide-up space-y-8 py-10">
+
+    {!selectedNotebook && (
+      <>
+        <h2 className="text-4xl font-black text-white uppercase tracking-tighter text-center">
+          Cuadernos de Primaria
+        </h2>
+
+        <p className="text-slate-500 text-center max-w-lg mx-auto italic">
+          "El asombro de los más pequeños visto a través de su puño y letra."
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-10">
+          {NOTEBOOKS.map(nb => (
+            <div
+              key={nb.id}
+              onClick={() => setSelectedNotebook(nb)}
+              className="cursor-pointer glass rounded-3xl overflow-hidden hover:border-violet-500/40 transition-all"
+            >
+              <img
+                src={nb.cover}
+                className="w-full h-72 object-cover"
+              />
+
+              <div className="p-5">
+                <h3 className="text-white font-bold text-lg">
+                  {nb.title}
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
+    )}
+
+    {selectedNotebook && (
+      <div className="max-w-4xl mx-auto">
+
+        <button
+          onClick={() => setSelectedNotebook(null)}
+          className="mb-8 text-slate-400 hover:text-white flex items-center gap-2 font-bold"
+        >
+          ← Volver
+        </button>
+
+        <h2 className="text-3xl font-black text-white mb-10">
+          {selectedNotebook.title}
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {(selectedNotebook.images || []).map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              className="w-full rounded-2xl"
+            />
+          ))}
+        </div>
+
+      </div>
+    )}
+
+  </div>
+)}
+
 
 
 
@@ -906,7 +989,7 @@ const deleteComment = async (resId, commentId) => {
 
 
     {/* TikTok - SVG Manual (Logo Real estilo línea) */}
-    <a href="https://www.tiktok.com/@realtalk.esp" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all">
+    <a href="https://www.tiktok.com/@realtalk.es" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
         </svg>
