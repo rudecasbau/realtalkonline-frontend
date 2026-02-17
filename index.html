@@ -24,12 +24,36 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-dark);
             color: #e2e8f0;
             overflow-x: hidden;
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -43,10 +67,34 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         .btn-gradient {
             background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -59,6 +107,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         .category-card:hover {
             border-color: rgba(124, 58, 237, 0.4);
             background: rgba(124, 58, 237, 0.05);
@@ -67,10 +127,34 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -84,8 +168,32 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     <script type="text/babel">
         const { useState, useMemo, useEffect } = React;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -107,10 +215,46 @@ fetch(API_URL + "/ping")
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Componente Icon genérico que ya tenías
 const Icon = ({ name, size = 20, className = "" }) => {
   return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
 };
+
+
+
+
+
+
+
+
+
 
 
 
@@ -122,7 +266,7 @@ const Icon = ({ name, size = 20, className = "" }) => {
             { id: 'q3', title: "Identidad digital y el 'yo' virtual", context: "¿Somos nuestra huella digital o algo más esencial?", category: "cultura", isWeekly: false, podcastId: '03', notebookId: 'N-03' },
             { id: 'q4', title: "¿El dinero da la felicidad?", context: "¿Realmente conseguimos ser felices con ello o es más bien una obsesión negativa?", category: "etica", isWeekly: false, podcastId: '04', notebookId: 'N-04' },
             { id: 'q5', title: "¿Qué es tener éxito en la vida? ¿Quién decide qué es tener éxito y por qué lo aceptamos?", context: "¿Debemos seguir unos estándares para tener éxito y ser felices? ", category: "antropologia", isWeekly: false, podcastId: '05', notebookId: 'N-05' },
-            { id: 'q6', title: "¿Qué es la felicidad? ¿Estamos obsersionados con ella?", context: "La definición de felicidad es de los temas más complejos jamás tratados: ¿qué es? ¿Merece la pena? ", category: "etica", isWeekly: false, podcastId: '06', notebookId: 'N-06' },
+            { id: 'q6', title: "¿Qué es la felicidad? ¿Estamos obsesionados con ella?", context: "La definición de felicidad es de los temas más complejos jamás tratados: ¿qué es? ¿Merece la pena? ", category: "etica", isWeekly: false, podcastId: '06', notebookId: 'N-06' },
             { id: 'q7', title: "¿Aprendemos para ser libres o solo para encajar en el sistema?", context: "¿Para qué dedicamos años de nuestra vida en aprender concoimientos y oficios? ¿Qué papel juega en nuestra vida y en nuuestra sociedad? ", category: "epistemologia", isWeekly: false, podcastId: '07', notebookId: 'N-07' },
             { id: 'q8', title: "¿El conocimiento nos hace más libres o más responsables?", context: "¿Este es el objetivo de años de estudio? ", category: "epistemologia", isWeekly: false, podcastId: '08', notebookId: 'N-08' },
             { id: 'q9', title: "¿Quién eres realmente: lo que piensas, lo que haces o lo que otros creen de ti?", context: "¿En qué se basa tu personalidad? ", category: "antropologia", isWeekly: false, podcastId: '09', notebookId: 'N-09' },
@@ -132,16 +276,62 @@ const Icon = ({ name, size = 20, className = "" }) => {
             { id: 'q13', title: "¿El tiempo es una realidad o es una concepción humana?", context: "¿El tiempo fluye solo en nosotros? ¿Siempre va hacia adelante y con la misma velocidad? ", category: "metafisica", isWeekly: false, podcastId: '13', notebookId: 'N-13' },
             { id: 'q14', title: "¿Qué significa aprender de verdad? ¿Para qué sirve aprender en la escuela?", context: "¿Para qué le dedicamos tantos años de nuestra vida? ", category: "epistemologia", isWeekly: false, podcastId: '14', notebookId: 'N-14' },
             { id: 'q14', title: "¿Cómo de importante es escribir a mano?", context: "Lee este artículo y reflexiona (Alfa y Omega, Carlos Javier González Serrano) ", link:"https://alfayomega.es/necesitamos-escribir-a-mano/", category: "cultura", isWeekly: false, podcastId: '15', notebookId: 'N-15' },
+{ id: 'q15', title: "¿Puede una máquina llegar a sentir o tener consciencia, o solo simularla?", context: "", category: "tecnologia", isWeekly: false, podcastId: '16', notebookId: 'N-16' },
+{ id: 'q16', title: "Si un algoritmo toma una decisión racista o discriminatoria, ¿de quién es la responsabilidad moral: del creador, del usuario o de la máquina?", context: "", category: "tecnologia", isWeekly: false, podcastId: '17', notebookId: 'N-17' },
+{ id: 'q17', title: "¿Estamos intercambiando nuestra privacidad por comodidad de forma irresponsable?", context: "", category: "tecnologia", isWeekly: false, podcastId: '18', notebookId: 'N-18' },
+{ id: 'q18', title: "¿Está la IA creando un 'sedentarismo cognitivo' donde ya no sabemos cómo construir un argumento desde cero?", context: "", category: "tecnologia", isWeekly: false, podcastId: '19', notebookId: 'N-19' },
+
+
+
+
+{ id: 'q19', title: "¿Qué es hoy lo más valioso que puede ofrecer la educación a una persona, más allá de los conocimientos y de la preparación para el trabajo?", context: "", category: "educacion", isWeekly: false, podcastId: '20', notebookId: 'N-20' },
+{ id: 'q20', title: "¿La digitalización y la inteligencia artificial mejoran necesariamente la educación o pueden empobrecerla?", context: "", category: "educacion", isWeekly: false, podcastId: '21', notebookId: 'N-21' },
+{ id: 'q21', title: "¿La cultura de la evaluación mejora realmente la enseñanza?", context: "", category: "educacion", isWeekly: false, podcastId: '22', notebookId: 'N-22' },
+{ id: 'q22', title: "¿Cómo sabemos si alguien ha 'aprendido' realmente algo o si solo está repitiendo información?", context: "", category: "educacion", isWeekly: false, podcastId: '23', notebookId: 'N-23' },
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
           ];  
 
 
+
+
+
+
+
+
           const NOTEBOOKS = [
   {id: "q1",title: "¿Qué es tener éxito en la vida? ¿Quién decide qué es tener éxito y por qué lo aceptamos?",questionId: "q5",cover: "assets/notebooks/q1/nb1.png",images: ["assets/notebooks/q1/nb1.png","assets/notebooks/q1/nb2.png","assets/notebooks/q1/nb3.png"]},
-  
+ 
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -162,15 +352,27 @@ const Icon = ({ name, size = 20, className = "" }) => {
             const [inputVal, setInputVal] = useState('');
             const [commentInput, setCommentInput] = useState({});
             const [loading, setLoading] = useState(false);
+            const [showSettings, setShowSettings] = useState(false);
+
+
+
+
+
+
+
+
             // --- NUEVO ESTADO PARA EL MENÚ Y CATEGORÍAS ---
   const [activeTab, setActiveTab] = useState('Semana'); // Pestaña principal
   const [categoryView, setCategoryView] = useState('grid'); // 'grid' o 'questions'
   const [activeCategory, setActiveCategory] = useState(null);
 
+
+
+
   const CATEGORIES_DATA = [
-    { 
-      id: 'metafisica', 
-      name: 'Metafísica', 
+    {
+      id: 'metafisica',
+      name: 'Metafísica',
       subtitle: 'Realidad y Ser',
       iconName: 'sparkles', // Usamos nombres de string para tu componente Icon
       color: 'from-amber-500/20 to-orange-600/20',
@@ -178,37 +380,62 @@ const Icon = ({ name, size = 20, className = "" }) => {
       textColor: 'text-amber-400',
       count: INITIAL_QUESTIONS.filter(q => q.category === 'metafisica').length
     },
-    { 
-      id: 'etica', 
-      name: 'Ética', 
+    {
+      id: 'etica',
+      name: 'Ética',
       subtitle: 'Bien y Moral',
-      iconName: 'circle-dot', 
+      iconName: 'circle-dot',
       color: 'from-emerald-500/20 to-teal-600/20',
       border: 'hover:border-emerald-500/50',
       textColor: 'text-emerald-400',
       count: INITIAL_QUESTIONS.filter(q => q.category === 'etica').length
     },
-    { 
-      id: 'antropologia', 
-      name: 'Antropología', 
+    {
+      id: 'antropologia',
+      name: 'Antropología',
       subtitle: 'Naturaleza Humana',
-      iconName: 'users', 
+      iconName: 'users',
       color: 'from-violet-500/20 to-purple-600/20',
       border: 'hover:border-violet-500/50',
       textColor: 'text-violet-400',
       count: INITIAL_QUESTIONS.filter(q => q.category === 'antropologia').length
     },
-    { 
-      id: 'cultura', 
-      name: 'Libros y Cultura', 
+    {
+  id: 'tecnologia',
+  name: 'Tecnología',
+  subtitle: 'Futuro y máquinas',
+  iconName: 'cpu', // icono de lucide
+  color: 'from-cyan-500/20 to-blue-600/20',
+  border: 'hover:border-cyan-500/50',
+  textColor: 'text-cyan-400',
+  count: INITIAL_QUESTIONS.filter(q => q.category === 'tecnologia').length
+},
+{
+  id: 'educacion',
+  name: 'Educación',
+  subtitle: 'Aprender y enseñar',
+  iconName: 'book',
+  color: 'from-rose-500/20 to-pink-600/20',
+  border: 'hover:border-rose-500/50',
+  textColor: 'text-rose-400',
+  count: INITIAL_QUESTIONS.filter(q => q.category === 'educacion').length
+},
+
+
+    {
+      id: 'cultura',
+      name: 'Libros y Cultura',
       subtitle: 'Expresión Humana',
-      iconName: 'library', 
+      iconName: 'library',
       color: 'from-blue-500/20 to-indigo-600/20',
       border: 'hover:border-blue-500/50',
       textColor: 'text-blue-400',
       count: INITIAL_QUESTIONS.filter(q => q.category === 'cultura').length
     },
   ];
+
+
+
 
   const handleCategoryClick = (cat) => {
     setActiveCategory(cat);
@@ -220,12 +447,12 @@ const Icon = ({ name, size = 20, className = "" }) => {
     <>
       {/* Input de nueva respuesta */}
       <div className="glass p-6 rounded-3xl mb-12 border-white/10 focus-within:border-violet-500/30 transition-all">
-        <textarea 
+        <textarea
           value={inputVal}
-          onChange={e => setInputVal(e.target.value)} 
-          className="w-full bg-transparent border-none text-lg text-white placeholder-slate-600 focus:ring-0 resize-none py-2 outline-none" 
-          placeholder="Comparte tu pensamiento más profundo..." 
-          rows="3" 
+          onChange={e => setInputVal(e.target.value)}
+          className="w-full bg-transparent border-none text-lg text-white placeholder-slate-600 focus:ring-0 resize-none py-2 outline-none"
+          placeholder="Comparte tu pensamiento más profundo..."
+          rows="3"
         />
         <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/5">
           <div className="flex items-center gap-2 text-slate-500">
@@ -235,6 +462,9 @@ const Icon = ({ name, size = 20, className = "" }) => {
           <button onClick={addResponse} disabled={!inputVal.trim()} className="btn-gradient text-white font-bold px-10 py-3.5 rounded-xl shadow-lg disabled:opacity-50">PUBLICAR</button>
         </div>
       </div>
+
+
+
 
       {/* Lista de Respuestas */}
       <div className="space-y-6">
@@ -286,10 +516,25 @@ const Icon = ({ name, size = 20, className = "" }) => {
 
 
 
+
+
+
+
+
+
+
+
+
                     {/* ... Resto de botones ... */}
                 </div>
               {/* Comentarios */}
 <div className="mt-6 space-y-3">
+
+
+
+
+
+
 
 
   {(res.comments || []).map(c => (
@@ -300,9 +545,21 @@ const Icon = ({ name, size = 20, className = "" }) => {
       </div>
 
 
-      
+
+
+
+
+
+
+     
     </div>
   ))}
+
+
+
+
+
+
 
 
   {/* Añadir comentario */}
@@ -324,6 +581,15 @@ const Icon = ({ name, size = 20, className = "" }) => {
 
 
 
+
+
+
+
+
+
+
+
+
              </div>
             );
          })}
@@ -333,7 +599,28 @@ const Icon = ({ name, size = 20, className = "" }) => {
 
 
 
+
+
+
+
+
+
+
+
+
             useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -357,6 +644,18 @@ const Icon = ({ name, size = 20, className = "" }) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             useEffect(() => {
                 fetchResponses();
             }, [activeQuestionId]);
@@ -364,7 +663,31 @@ const Icon = ({ name, size = 20, className = "" }) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             const currentQuestion = INITIAL_QUESTIONS.find(q => q.id === activeQuestionId);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -379,12 +702,36 @@ const Icon = ({ name, size = 20, className = "" }) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             const handleAuth = async (e) => {
   e.preventDefault();
   setAuthError(""); // Limpiar errores previos
 
 
+
+
+
+
+
+
   const endpoint = isRegistering ? "/register" : "/login";
+
+
+
+
+
+
 
 
   try {
@@ -395,12 +742,30 @@ const Icon = ({ name, size = 20, className = "" }) => {
     });
 
 
+
+
+
+
+
+
     const data = await res.json();
+
+
+
+
+
+
 
 
     if (!res.ok) {
       throw new Error(data.error || "Error en la autenticación");
     }
+
+
+
+
+
+
 
 
     // Si todo sale bien, guardamos el usuario y limpiamos formulario
@@ -413,9 +778,21 @@ const Icon = ({ name, size = 20, className = "" }) => {
 
 
 
+
+
+
+
+
+
+
+
+
 const addResponse = async (e) => {
                 e.preventDefault();
                 if (!inputVal.trim()) return;
+
+
+
 
                 const newRes = {
                     qId: activeQuestionId,
@@ -424,6 +801,9 @@ const addResponse = async (e) => {
                     date: new Date().toISOString()
                 };
 
+
+
+
                 try {
                     const response = await fetch(`${API_URL}/responses`, {
                         method: 'POST',
@@ -431,13 +811,22 @@ const addResponse = async (e) => {
                         body: JSON.stringify(newRes)
                     });
 
+
+
+
                     if (!response.ok) throw new Error("Error en el servidor");
 
+
+
+
                     const savedData = await response.json();
-                    
+                   
                     // Usamos los datos que nos devuelve MongoDB (que ya traen el _id correcto)
                     setResponses(prev => [savedData, ...prev]);
                     setInputVal('');
+
+
+
 
                 } catch (err) {
                     console.error("Error:", err);
@@ -450,9 +839,30 @@ const addResponse = async (e) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
            const addComment = async (resId) => {
   const text = commentInput[resId];
   if (!text?.trim()) return;
+
+
+
 
   try {
     const res = await fetch(`${API_URL}/responses/${resId}/comments`, {
@@ -464,9 +874,18 @@ const addResponse = async (e) => {
       })
     });
 
+
+
+
     if (!res.ok) throw new Error("Error guardando comentario");
 
+
+
+
     const data = await res.json();
+
+
+
 
     // Actualizamos con lo que devuelve MongoDB
     setResponses(prev =>
@@ -477,13 +896,22 @@ const addResponse = async (e) => {
       )
     );
 
+
+
+
     setCommentInput({ ...commentInput, [resId]: '' });
+
+
+
 
   } catch (err) {
     console.error("Error:", err);
     alert("No se pudo guardar comentario");
   }
 };
+
+
+
 
 const deleteComment = async (resId, commentId) => {
   try {
@@ -496,6 +924,9 @@ const deleteComment = async (resId, commentId) => {
         }
       }
     );
+
+
+
 
     setResponses(prev =>
       prev.map(r =>
@@ -515,8 +946,35 @@ const deleteComment = async (resId, commentId) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           const vote = async (id, type) => {
   let action = 'add'; // Por defecto sumamos
+
+
+
+
+
+
 
 
   // 1. Actualización visual instantánea y lógica de toggle
@@ -539,6 +997,12 @@ const deleteComment = async (resId, commentId) => {
   }));
 
 
+
+
+
+
+
+
   // 2. Enviar al backend la acción correcta
   try {
   await fetch(`${API_URL}/responses/${id}/vote`, {
@@ -556,6 +1020,24 @@ const deleteComment = async (resId, commentId) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             if (!currentUser) {
                 return (
                     <div className="min-h-screen flex items-center justify-center p-6 bg-[#050505]">
@@ -565,6 +1047,9 @@ const deleteComment = async (resId, commentId) => {
   alt="RealTalk"
   className="w-20 h-20 mx-auto mb-6 object-contain"
 />
+
+
+
 
                             <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">RealTalk</h1>
                             <p className="text-slate-500 mb-8 text-sm">Plataforma para Agentes del Cambio</p>
@@ -586,6 +1071,12 @@ const deleteComment = async (resId, commentId) => {
                                     </div>
 
 
+
+
+
+
+
+
                                 {authError && (
   <div className="text-red-500 text-xs font-bold text-center mt-2 bg-red-500/10 p-2 rounded-lg border border-red-500/20">
     {authError}
@@ -596,6 +1087,12 @@ const deleteComment = async (resId, commentId) => {
 </button>
 
 
+
+
+
+
+
+
 <div className="text-center mt-4">
   <button
     type="button"
@@ -604,7 +1101,7 @@ const deleteComment = async (resId, commentId) => {
   >
     {isRegistering
       ? "¿Ya tienes cuenta? Inicia sesión"
-      : "¿No tienes cuenta? Regístratrrrr"}
+      : "¿No tienes cuenta? Regístrate"}
   </button>
 </div>
                             </form>
@@ -616,11 +1113,26 @@ const deleteComment = async (resId, commentId) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             return (
                 <div className="min-h-screen pb-20">
                     <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
         <div className="max-w-3xl mx-auto bg-[#0f111a]/80 backdrop-blur-xl border border-white/10 rounded-2xl px-2 py-1.5 flex items-center justify-between shadow-2xl">
-          
+         
+
+
+
 
 {/* Logo RealTalk */}
 <img
@@ -634,17 +1146,23 @@ const deleteComment = async (resId, commentId) => {
 />
 
 
+
+
+
+
+
+
           {/* Secciones Principales */}
           <div className="flex items-center gap-1 flex-1">
-            <button 
+            <button
               onClick={() => { setActiveTab('Semana'); setView('reflexiones'); }}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${activeTab === 'Semana' ? 'bg-white/10 text-white shadow-inner' : 'text-slate-400 hover:text-slate-200'}`}
             >
-              <Icon name="calendar" size={16} /> 
+              <Icon name="calendar" size={16} />
               <span className="hidden sm:inline">Pregunta Semanal</span>
               <span className="sm:hidden">Semana</span>
             </button>
-            <button 
+            <button
               onClick={() => { setActiveTab('Reflexiones'); setView('reflexiones'); }}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${activeTab === 'Reflexiones' ? 'bg-white/10 text-white shadow-inner' : 'text-slate-400 hover:text-slate-200'}`}
             >
@@ -652,23 +1170,26 @@ const deleteComment = async (resId, commentId) => {
             </button>
           </div>
 
+
+
+
           {/* Secciones Secundarias */}
           <div className="flex items-center gap-1 border-l border-white/10 ml-2 pl-2">
-            <button 
+            <button
               onClick={() => { setActiveTab('Podcast'); setView('podcasts'); }}
               className={`p-2 rounded-lg transition-all flex items-center gap-2 ${activeTab === 'Podcast' ? 'bg-violet-600/20 text-violet-400' : 'text-slate-500 hover:text-slate-300'}`}
               title="Podcast"
             >
               <Icon name="mic-2" size={18} />
             </button>
-            <button 
+            <button
               onClick={() => { setActiveTab('Cuadernos'); setView('notebooks'); }}
               className={`p-2 rounded-lg transition-all flex items-center gap-2 ${activeTab === 'Cuadernos' ? 'bg-violet-600/20 text-violet-400' : 'text-slate-500 hover:text-slate-300'}`}
               title="Cuadernos"
             >
               <Icon name="book-open" size={18} />
             </button>
-            
+           
              {/* Perfil Mini */}
              <div onClick={() => setView('profile')} className="ml-2 w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center text-white text-xs font-bold cursor-pointer hover:scale-105 transition-transform border border-white/10">
                 {currentUser ? currentUser.avatar : <Icon name="user" size={14}/>}
@@ -679,13 +1200,22 @@ const deleteComment = async (resId, commentId) => {
 
 
 
+
+
+
+
+
+
+
+
+
                     <main className="max-w-4xl mx-auto pt-32 px-6">
                         <main className="max-w-4xl mx-auto pt-32 px-6 pb-20">
-        
+       
         {/* Lógica para mostrar CONTENIDO PRINCIPAL (Semana o Reflexiones) */}
         {view === 'reflexiones' && (
           <div className="animate-slide-up">
-            
+           
             {/* CASO 1: PREGUNTA DE LA SEMANA (Tu diseño original simplificado) */}
             {activeTab === 'Semana' && (
               <div>
@@ -694,7 +1224,7 @@ const deleteComment = async (resId, commentId) => {
                     const weeklyQ = INITIAL_QUESTIONS.find(q => q.isWeekly);
                     // Si la activa no es la semanal, la cambiamos (efecto secundario controlado)
                     if (activeQuestionId !== weeklyQ.id && activeTab === 'Semana') setActiveQuestionId(weeklyQ.id);
-                    
+                   
                     return (
                       <>
                         <div className="glass p-8 rounded-[2.5rem] mb-8 border-amber-500/10 shadow-2xl relative overflow-hidden">
@@ -704,12 +1234,15 @@ const deleteComment = async (resId, commentId) => {
                            <p className="text-lg text-slate-400">{weeklyQ.context}</p>
                         </div>
                         {/* Renderizamos la caja de input y las respuestas (Tu código existente reutilizado) */}
-                        {renderResponseSection()} 
+                        {renderResponseSection()}
                       </>
                     )
                  })()}
               </div>
             )}
+
+
+
 
             {/* CASO 2: REFLEXIONES (El nuevo Grid) */}
             {activeTab === 'Reflexiones' && (
@@ -724,6 +1257,9 @@ const deleteComment = async (resId, commentId) => {
                         Selecciona una sección sobre la que pensar
                       </p>
                     </header>
+
+
+
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {CATEGORIES_DATA.map((cat) => (
@@ -759,28 +1295,34 @@ const deleteComment = async (resId, commentId) => {
                 ) : (
                   // VISTA DE PREGUNTAS DENTRO DE UNA CATEGORÍA
                   <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-                    <button 
+                    <button
                       onClick={() => setCategoryView('grid')}
                       className="flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition-colors group font-bold text-sm"
                     >
-                      <Icon name="arrow-left" size={16} className="group-hover:-translate-x-1 transition-transform" /> 
+                      <Icon name="arrow-left" size={16} className="group-hover:-translate-x-1 transition-transform" />
                       <span>VOLVER A SECCIONES</span>
                     </button>
+
+
+
 
                     <div className="mb-8">
                        <span className={`text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/5 ${activeCategory.textColor} mb-2 inline-block`}>{activeCategory.name}</span>
                        <h2 className="text-3xl font-black text-white">Explora preguntas</h2>
                     </div>
 
+
+
+
                     <div className="space-y-4">
                       {INITIAL_QUESTIONS.filter(q => q.category === activeCategory.id).map((q) => (
-                        <div 
-                          key={q.id} 
+                        <div
+                          key={q.id}
                           onClick={() => { setActiveQuestionId(q.id); /*Aquí deberíamos abrir la vista de detalle, por simplicidad la usaremos debajo*/ }}
                           className={`p-6 rounded-[2rem] bg-white/5 border hover:bg-white/10 transition-all cursor-pointer group ${activeQuestionId === q.id ? 'border-violet-500 bg-violet-500/10' : 'border-white/5'}`}
                         >
                           <h3 className="text-lg font-bold text-white mb-2">{q.title}</h3>
-                          
+                         
 <p className="text-slate-400 text-sm leading-relaxed">
   {q.context}
   {q.link && (
@@ -801,7 +1343,10 @@ const deleteComment = async (resId, commentId) => {
   )}
 </p>
 
-                          
+
+
+
+                         
                           {/* Si esta es la pregunta activa, mostramos la sección de respuestas aquí mismo (estilo acordeón) o redirigimos */}
                           {activeQuestionId === q.id && (
                              <div className="mt-6 pt-6 border-t border-white/5 animate-slide-up">
@@ -817,6 +1362,18 @@ const deleteComment = async (resId, commentId) => {
             )}
           </div>
         )}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -844,8 +1401,23 @@ const deleteComment = async (resId, commentId) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                         {view === 'notebooks' && (
   <div className="animate-slide-up space-y-8 py-10">
+
+
+
 
     {!selectedNotebook && (
       <>
@@ -853,9 +1425,15 @@ const deleteComment = async (resId, commentId) => {
           Cuadernos de Primaria
         </h2>
 
+
+
+
         <p className="text-slate-500 text-center max-w-lg mx-auto italic">
           "El asombro de los más pequeños visto a través de su puño y letra."
         </p>
+
+
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-10">
           {NOTEBOOKS.map(nb => (
@@ -869,6 +1447,9 @@ const deleteComment = async (resId, commentId) => {
                 className="w-full h-72 object-cover"
               />
 
+
+
+
               <div className="p-5">
                 <h3 className="text-white font-bold text-lg">
                   {nb.title}
@@ -880,8 +1461,14 @@ const deleteComment = async (resId, commentId) => {
       </>
     )}
 
+
+
+
     {selectedNotebook && (
       <div className="max-w-4xl mx-auto">
+
+
+
 
         <button
           onClick={() => setSelectedNotebook(null)}
@@ -890,9 +1477,15 @@ const deleteComment = async (resId, commentId) => {
           ← Volver
         </button>
 
+
+
+
         <h2 className="text-3xl font-black text-white mb-10">
           {selectedNotebook.title}
         </h2>
+
+
+
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {(selectedNotebook.images || []).map((img, i) => (
@@ -904,11 +1497,32 @@ const deleteComment = async (resId, commentId) => {
           ))}
         </div>
 
+
+
+
       </div>
     )}
 
+
+
+
   </div>
 )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -937,10 +1551,57 @@ const deleteComment = async (resId, commentId) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                                         <div className="space-y-4">
-                                            <button className="w-full bg-white/5 text-white font-bold p-5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all flex items-center justify-center gap-3">
-                                                <Icon name="settings" size={20}/> CONFIGURAR CUENTA
-                                            </button>
+                                            {/* Botón de CONFIGURAR CUENTA */}
+<button
+  onClick={() => setShowSettings(true)}
+  className="w-full bg-white/5 text-white font-bold p-5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all flex items-center justify-center gap-3"
+>
+  <Icon name="settings" size={20}/> CONFIGURAR CUENTA
+</button>
+
+
+{/* Modal sencillo */}
+{showSettings && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="bg-[#0f111a] p-8 rounded-3xl border border-white/10 text-center max-w-sm w-full">
+      <h3 className="text-white font-bold text-xl mb-6">Configuración de Cuenta</h3>
+     
+      {/* Botón para cambiar foto */}
+      <button
+        className="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 rounded-xl transition-all"
+        onClick={() => alert("Aquí se implementará el cambio de foto más adelante")}
+      >
+        Cambiar foto de perfil
+      </button>
+
+
+      {/* Botón para cerrar modal */}
+      <button
+        className="mt-6 w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-xl transition-all"
+        onClick={() => setShowSettings(false)}
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+)}
+
+
+
+
                                             <button onClick={() => setCurrentUser(null)} className="w-full bg-red-500/10 text-red-500 font-bold p-5 rounded-2xl border border-red-500/20 hover:bg-red-500 hover:text-white transition-all flex items-center justify-center gap-3">
                                                 <Icon name="log-out" size={20}/> CERRAR SESIÓN
                                             </button>
@@ -950,6 +1611,18 @@ const deleteComment = async (resId, commentId) => {
                             </div>
                         )}
                     </main></main>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -965,13 +1638,28 @@ const deleteComment = async (resId, commentId) => {
   className="w-8 h-8 object-contain"
 />
 
+
+
+
                                     <span className="text-lg font-bold tracking-tighter text-white">REALTALK</span>
                                 </div>
                                 <p className="text-slate-500 text-sm italic">"Filosofía para jóvenes agentes del cambio."</p>
  </div>
 
 
+
+
+
+
+
+
  <div className="flex justify-center gap-6">
+
+
+
+
+
+
 
 
    {/* Correo - Versión corregida */}
@@ -982,10 +1670,22 @@ const deleteComment = async (resId, commentId) => {
   </a>
 
 
+
+
+
+
+
+
     {/* Instagram - Usamos el de la librería (funciona bien) */}
     <a href="https://www.instagram.com/realtalk.es/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white hover:bg-violet-600 transition-all">
         <Icon name="instagram"/>
     </a>
+
+
+
+
+
+
 
 
     {/* TikTok - SVG Manual (Logo Real estilo línea) */}
@@ -994,6 +1694,12 @@ const deleteComment = async (resId, commentId) => {
             <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
         </svg>
     </a>
+
+
+
+
+
+
 
 
     {/* Spotify - SVG Manual (Logo Real estilo línea) */}
@@ -1018,8 +1724,35 @@ const deleteComment = async (resId, commentId) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
