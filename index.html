@@ -370,6 +370,41 @@ const PODCAST_TITLES = [
             const [loading, setLoading] = useState(false);
             const [showSettings, setShowSettings] = useState(false);
 
+            const [showAvatarPicker, setShowAvatarPicker] = useState(false);
+const AVATARS = [
+  "assets/avatars/avatar1.png",
+  "assets/avatars/avatar2.png",
+  "assets/avatars/avatar3.png",
+  "assets/avatars/avatar4.png"
+];
+const updateAvatar = async (avatar) => {
+  try {
+    const res = await fetch(`${API_URL}/users/${currentUser.username}/avatar`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ avatar }),
+    });
+
+
+    if (!res.ok) throw new Error("No se pudo actualizar el avatar");
+
+
+    const data = await res.json();
+
+
+    // Actualiza el estado local con la respuesta del servidor
+    setCurrentUser(prev => ({ ...prev, avatar: data.avatar }));
+
+
+  } catch (err) {
+    console.error(err);
+    alert("Error actualizando avatar. Intenta de nuevo.");
+  }
+};
+
+
 
 
 
@@ -795,6 +830,29 @@ const PODCAST_TITLES = [
 
 
 
+const translateToSpanish = async (text) => {
+  try {
+    const res = await fetch("https://libretranslate.de/translate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        q: text,
+        source: "auto",
+        target: "es",
+        format: "text"
+      })
+    });
+
+    const data = await res.json();
+    return data.translatedText;
+  } catch (err) {
+    console.error("Error traduciendo:", err);
+    return text;
+  }
+};
+
 
 
 
@@ -810,12 +868,15 @@ const addResponse = async (e) => {
 
 
 
-                const newRes = {
-                    qId: activeQuestionId,
-                    user: currentUser.username,
-                    content: inputVal,
-                    date: new Date().toISOString()
-                };
+               const translatedText = await translateToSpanish(inputVal);
+
+const newRes = {
+  qId: activeQuestionId,
+  user: currentUser.username,
+  content: translatedText,
+  date: new Date().toISOString()
+};
+
 
 
 
@@ -1209,7 +1270,15 @@ const deleteComment = async (resId, commentId) => {
            
              {/* Perfil Mini */}
              <div onClick={() => setView('profile')} className="ml-1 w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center text-white text-xs font-bold cursor-pointer hover:scale-105 transition-transform border border-white/10">
-                {currentUser ? currentUser.avatar : <Icon name="user" size={14}/>}
+                 {currentUser?.avatar ? (
+  <img
+    src={currentUser.avatar}
+    className="w-full h-full object-cover rounded-lg"
+  />
+) : (
+  <Icon name="user" size={14}/>
+)}
+
              </div>
           </div>
         </div>
@@ -1567,7 +1636,18 @@ const deleteComment = async (resId, commentId) => {
                                 <div className="glass p-12 rounded-[3rem] text-center border-white/10 relative overflow-hidden">
                                     <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-violet-600/20 to-transparent"></div>
                                     <div className="relative z-10">
-                                        <div className="w-32 h-32 bg-gradient-to-tr from-violet-600 to-indigo-600 rounded-[2.5rem] mx-auto flex items-center justify-center text-5xl font-black mb-6 shadow-2xl border-4 border-[#08080c]">{currentUser.avatar}</div>
+                                         <div className="w-32 h-32 bg-gradient-to-tr from-violet-600 to-indigo-600 rounded-[2.5rem] mx-auto flex items-center justify-center shadow-2xl border-4 border-[#08080c] overflow-hidden">
+  {currentUser.avatar ? (
+    <img
+      src={currentUser.avatar}
+      className="w-full h-full object-cover"
+      alt="avatar"
+    />
+  ) : (
+    <Icon name="user" size={50}/>
+  )}
+</div>
+
                                         <h2 className="text-4xl font-black text-white mb-2 uppercase tracking-tighter">{currentUser.username}</h2>
                                         <p className="text-slate-500 font-bold mb-10 tracking-widest text-[10px] uppercase">Agente del Cambio • Desde {currentUser.joinDate}</p>
                                        
@@ -1620,6 +1700,22 @@ const deleteComment = async (resId, commentId) => {
       >
         Cambiar foto de perfil
       </button>
+{showAvatarPicker && (
+  <div className="mt-6 grid grid-cols-2 gap-4">
+    {AVATARS.map((avatar, index) => (
+      <img
+        key={index}
+        src={avatar}
+        onClick={() => {
+          updateAvatar(avatar);       // 🔔 Guardamos en backend
+          setShowAvatarPicker(false); // Cerramos selector
+          setShowSettings(false);     // Cerramos modal
+        }}
+        className="w-20 h-20 rounded-xl cursor-pointer border-2 border-transparent hover:border-violet-500 transition-all"
+      />
+    ))}
+  </div>
+)}
 
 
       {/* Botón para cerrar modal */}
