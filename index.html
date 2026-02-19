@@ -314,8 +314,9 @@ const Icon = ({ name, size = 20, className = "" }) => {
 
 
           const NOTEBOOKS = [
-  {id: "q1",title: "¿Qué es tener éxito en la vida? ¿Quién decide qué es tener éxito y por qué lo aceptamos?",questionId: "q5",cover: "assets/notebooks/q1/nb1.png",images: ["assets/notebooks/q1/nb1.png","assets/notebooks/q1/nb2.png","assets/notebooks/q1/nb3.png"]},
- 
+  {id: "q1",title: "¿Qué es tener éxito en la vida? ¿Quién decide qué es tener éxito y por qué lo aceptamos?",questionId: "q5",cover: "assets/notebooks/q1/nb1.png",images: ["assets/notebooks/q1/nb1.png","assets/notebooks/q1/nb2.png","assets/notebooks/q1/nb3.png", "assets/notebooks/q1/nb4.png", "assets/notebooks/q1/nb5.png", "assets/notebooks/q1/nb6.png"]},
+  {id: "q2",title: "¿Qué es tener éxito en la vida? ¿Quién decide qué es tener éxito y por qué lo aceptamos?",questionId: "q5",cover: "assets/notebooks/q2/nb1.png",images: ["assets/notebooks/q2/nb1.png","assets/notebooks/q2/nb2.png","assets/notebooks/q2/nb3.png", "assets/notebooks/q2/nb4.png", "assets/notebooks/q2/nb5.png", ]},
+
 ];
 
 
@@ -1693,10 +1694,10 @@ const deleteComment = async (resId, commentId) => {
     <div className="bg-[#0f111a] p-8 rounded-3xl border border-white/10 text-center max-w-sm w-full">
       <h3 className="text-white font-bold text-xl mb-6">Configuración de Cuenta</h3>
      
-      {/* Botón para cambiar foto */}
+       {/* Botón para cambiar foto */}
       <button
         className="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 rounded-xl transition-all"
-        onClick={() => alert("Aquí se implementará el cambio de foto más adelante")}
+        onClick={() => setShowAvatarPicker(true)}
       >
         Cambiar foto de perfil
       </button>
